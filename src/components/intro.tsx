@@ -82,12 +82,12 @@ export default function Intro() {
                 >
                     <div className='relative'>
                         <img
-                            src='/assets/images/ali-tamer.jpg'
+                            src='/images/ali-tamer.jpg'
                             alt='Ali Tamer'
                             className='md:w-[330px] w-[250px] h-[420px] md:h-[550px] object-cover'
                         />
                         <img
-                            src='/assets/circle.svg'
+                            src='/circle.svg'
                             alt='Circle'
                             className='absolute bottom-16 md:-left-10 md:w-20 md:right-auto -right-40'
                         />

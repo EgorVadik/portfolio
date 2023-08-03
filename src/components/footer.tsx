@@ -1,36 +1,16 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Divider from './divider'
 import Navbar from './navbar'
 
 export default function Footer() {
     const email = 'alitamer82.at@gmail.com'
     const [name, setName] = useState('')
-    // const [email, setEmail] = useState('alitamer82.at@gmail.com')
     const [messgae, setMessage] = useState('')
-
-    const [emailErr, setEmailErr] = useState('')
-
-    // useEffect(() => {
-    //     if (email.trim().length === 0) {
-    //         setEmailErr('')
-    //         return
-    //     }
-
-    //     if (!isValidEmail(email.trim())) {
-    //         setEmailErr('Invalid Email')
-    //     } else {
-    //         setEmailErr('')
-    //     }
-    // }, [email])
-
-    function handleSubmit() {
-        // TODO Send mail
-    }
 
     return (
         <footer id='footer' className='bg-[#242424] text-white relative'>
             <img
-                src='/assets/rings.svg'
+                src='/rings.svg'
                 alt='Rings'
                 className='absolute w-2/5 md:-left-48 bottom-64 xl:-left-96'
             />
@@ -43,7 +23,7 @@ export default function Footer() {
                             soon as possible
                         </p>
                     </div>
-                    <form className='grid' onSubmit={handleSubmit}>
+                    <form className='grid'>
                         <input
                             type='text'
                             value={name}
@@ -64,26 +44,10 @@ export default function Footer() {
                         <input
                             type='email'
                             value={email}
-                            className={`bg-transparent border-b-2 border-[#7e7e7e]
-                                // isValidEmail(email)
-                                //     ? 'border-[#55f7af]'
-                                //     : email.trim().length == 0
-                                //     ? 'border-[#7e7e7e]'
-                                //     : 'border-[#ef4444]'
-                              font-medium focus:outline-none px-5 py-4 mt-3 text-[#c5c5c5]`}
+                            className={`bg-transparent border-b-2 border-[#7e7e7e] font-medium focus:outline-none px-5 py-4 mt-3 text-[#c5c5c5]`}
                             placeholder='EMAIL'
                             disabled
-                            // required
-                            // onChange={(e) => {
-                            //     setEmail(e.target.value)
-                            // }}
                         />
-                        {/* {emailErr && (
-                                <p className='text-[#ef4444] font-semibold italic absolute right-0 -bottom-6'>
-                                    {emailErr}
-                                </p>
-                            )} */}
-                        {/* </div> */}
                         <textarea
                             className={`bg-transparent border-b-2 ${
                                 messgae.trim().length == 0
@@ -99,8 +63,6 @@ export default function Footer() {
                             }}
                         ></textarea>
                         <button
-                            // target='_blank'
-                            // href={`mailto:alitamer82.at@gmail.com?subject=${name}&body=${messgae}`}
                             className='border-b-2 border-[#55f7af] py-1 uppercase text-base ml-auto font-semibold tracking-widest mt-7 mb-12 hover:text-[#55f7af] duration-200 transition-colors'
                             onClick={(e) => {
                                 e.preventDefault()

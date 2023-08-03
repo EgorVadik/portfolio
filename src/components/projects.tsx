@@ -8,7 +8,7 @@ export default function Projects() {
     const projects = [
         {
             name: 'Basedbin',
-            imgSrc: '/assets/images/Basedbin.png',
+            imgSrc: '/images/Basedbin.png',
             techStack: [
                 'Next.js',
                 'Nodejs',
@@ -21,14 +21,14 @@ export default function Projects() {
         },
         {
             name: 'Fylo Landing Page',
-            imgSrc: '/assets/images/Fylo-landing-page.png',
+            imgSrc: '/images/Fylo-landing-page.png',
             techStack: ['HTML', 'Tailwind CSS'],
             projectLink: 'https://egorvadik.github.io/fylo-landing-page/',
             githubLink: 'https://github.com/EgorVadik/fylo-landing-page',
         },
         {
             name: 'Trending Movies and TV Shows',
-            imgSrc: '/assets/images/Trending-Movies_Tv-Series.png',
+            imgSrc: '/images/Trending-Movies_Tv-Series.png',
             techStack: [
                 'Next.js',
                 'TypeScript',
@@ -42,7 +42,7 @@ export default function Projects() {
         },
         {
             name: 'Easybank Landing Page',
-            imgSrc: '/assets/images/Easybank-landing-page.png',
+            imgSrc: '/images/Easybank-landing-page.png',
             techStack: ['HTML', 'Tailwind CSS', 'JavaScript'],
             projectLink:
                 'https://egorvadik.github.io/easybanking-landing-page/',
@@ -50,14 +50,14 @@ export default function Projects() {
         },
         {
             name: 'Google Search Clone',
-            imgSrc: '/assets/images/Google-Search-Clone.png',
+            imgSrc: '/images/Google-Search-Clone.png',
             techStack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Google API'],
             projectLink: 'https://google-search-clone-egorvadik.vercel.app/',
             githubLink: 'https://github.com/EgorVadik/google-search-clone',
         },
         {
             name: 'Bookmark Landing Page',
-            imgSrc: '/assets/images/Bookmark-page.png',
+            imgSrc: '/images/Bookmark-page.png',
             techStack: ['HTML', 'Tailwind CSS', 'JavaScript'],
             projectLink: 'https://egorvadik.github.io/bookmark-landing-page/',
             githubLink: 'https://github.com/EgorVadik/bookmark-landing-page',

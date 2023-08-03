@@ -8,7 +8,7 @@ function App() {
     return (
         <main className='min-h-screen bg-[#151515] font-roboto relative overflow-hidden'>
             <img
-                src='/assets/rings.svg'
+                src='/rings.svg'
                 alt='Rings'
                 className='absolute w-2/5 -left-32 top-24'
             />
