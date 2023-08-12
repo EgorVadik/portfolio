@@ -1,11 +1,21 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Divider from './divider'
 import Navbar from './navbar'
 
 export default function Footer() {
     const email = 'alitamer82.at@gmail.com'
     const [name, setName] = useState('')
-    const [messgae, setMessage] = useState('')
+    const [message, setMessage] = useState('')
+    const [nameError, setNameError] = useState(false)
+    const [messageError, setMessageError] = useState(false)
+
+    useEffect(() => {
+        if (name.trim().length > 0 && name.trim().length < 3) {
+            setNameError(true)
+        } else {
+            setNameError(false)
+        }
+    }, [name])
 
     return (
         <footer id='footer' className='bg-[#242424] text-white relative'>
@@ -28,7 +38,7 @@ export default function Footer() {
                             type='text'
                             value={name}
                             className={`bg-transparent border-b-2 ${
-                                name.trim().length > 0 && name.trim().length < 3
+                                nameError
                                     ? 'border-[#ef4444]'
                                     : name.trim().length == 0
                                     ? 'border-[#7e7e7e]'
@@ -50,16 +60,19 @@ export default function Footer() {
                         />
                         <textarea
                             className={`bg-transparent border-b-2 ${
-                                messgae.trim().length == 0
+                                messageError
+                                    ? 'border-[#ef4444]'
+                                    : message.trim().length == 0
                                     ? 'border-[#7e7e7e]'
                                     : 'border-[#55f7af]'
                             } font-medium focus:outline-none px-5 py-4 mt-3`}
-                            value={messgae}
+                            value={message}
                             rows={3}
                             placeholder='MESSAGE'
                             required
                             onChange={(e) => {
                                 setMessage(e.target.value)
+                                if (messageError) setMessageError(false)
                             }}
                         ></textarea>
                         <button
@@ -69,11 +82,14 @@ export default function Footer() {
                                 if (
                                     (name.trim().length >= 0 &&
                                         name.trim().length < 3) ||
-                                    messgae.trim().length === 0
-                                )
+                                    message.trim().length === 0
+                                ) {
+                                    setMessageError(true)
+                                    setNameError(true)
                                     return
+                                }
 
-                                const emailLink = `mailto:${email}?subject=${name}&body=${messgae}`
+                                const emailLink = `mailto:${email}?subject=${name}&body=${message}`
                                 window.open(emailLink)
                             }}
                         >
