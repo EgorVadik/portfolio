@@ -7,6 +7,13 @@ export default function Projects() {
 
     const projects = [
         {
+            name: 'Shopping List',
+            imgSrc: '/images/shopping-list.png',
+            techStack: ['Vite', 'React', 'TypeScript', 'Tailwind CSS'],
+            projectLink: 'https://shopping-list-egorvadik.vercel.app/',
+            githubLink: 'https://github.com/EgorVadik/shopping-list',
+        },
+        {
             name: 'Basedbin',
             imgSrc: '/images/Basedbin.png',
             techStack: [
@@ -55,13 +62,13 @@ export default function Projects() {
             projectLink: 'https://google-search-clone-egorvadik.vercel.app/',
             githubLink: 'https://github.com/EgorVadik/google-search-clone',
         },
-        {
-            name: 'Bookmark Landing Page',
-            imgSrc: '/images/Bookmark-page.png',
-            techStack: ['HTML', 'Tailwind CSS', 'JavaScript'],
-            projectLink: 'https://egorvadik.github.io/bookmark-landing-page/',
-            githubLink: 'https://github.com/EgorVadik/bookmark-landing-page',
-        },
+        // {
+        //     name: 'Bookmark Landing Page',
+        //     imgSrc: '/images/Bookmark-page.png',
+        //     techStack: ['HTML', 'Tailwind CSS', 'JavaScript'],
+        //     projectLink: 'https://egorvadik.github.io/bookmark-landing-page/',
+        //     githubLink: 'https://github.com/EgorVadik/bookmark-landing-page',
+        // },
     ]
 
     return (

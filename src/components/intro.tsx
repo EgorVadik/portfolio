@@ -1,9 +1,10 @@
 import useScrollAnimation from '../hooks/useScrollAnimation'
 import { motion } from 'framer-motion'
 import useStaggerAnimation from '../hooks/useStaggerAnimation'
+import TypeWriter from 'typewriter-effect'
 
 export default function Intro() {
-    const name = 'Ali Tamer'
+    const name = 'Ali Tamer' as const
 
     const { control: controlLeft, ref: refLeft } = useScrollAnimation(-1)
 
@@ -27,6 +28,15 @@ export default function Intro() {
                     <h1>Nice to meet you!</h1>
                     <h1>
                         I'm{' '}
+                        {/* <TypeWriter
+                            options={{
+                                strings: [name],
+                                autoStart: true,
+                                loop: true,
+                                delay: 150,
+                                deleteSpeed: 150,
+                            }}
+                        /> */}
                         <span className='underline decoration-[#55f7af]'>
                             {name.split('').map((letter, index) => (
                                 <motion.span
@@ -55,13 +65,30 @@ export default function Intro() {
                     </h1>
                 </motion.div>
                 <motion.div variants={childVariant}>
-                    <p className='text-sm font-medium md:w-3/4 text-[#b8b8b8] pb-5 pt-7'>
+                    <div className='text-sm font-medium md:w-3/4 text-[#b8b8b8] pb-5 pt-7'>
                         I'm a 4th year computer science student, interested in
                         back-end development, but also working in front-end,
                         motivated to learn new technologies, with a fast
                         learning ability. Native language Arabic, second
                         language English.
-                    </p>
+                        <span className='md:ml-0 ml-1 inline-flex md:flex items-center gap-1'>
+                            Mainly work using
+                            <TypeWriter
+                                options={{
+                                    strings: [
+                                        'Next.js',
+                                        'Node.js',
+                                        'Tailwind CSS',
+                                        'TypeScript',
+                                    ],
+                                    autoStart: true,
+                                    loop: true,
+                                    delay: 100,
+                                    deleteSpeed: 100,
+                                }}
+                            />
+                        </span>
+                    </div>
                 </motion.div>
                 <motion.div variants={childVariant}>
                     <a
