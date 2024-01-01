@@ -1,14 +1,7 @@
 import { motion } from 'framer-motion'
 import ProjectBtns from './projectBtns'
 import useScrollAnimation from '../hooks/useScrollAnimation'
-
-type props = {
-    name: string
-    imgSrc: string
-    techStack: string[]
-    projectLink: string
-    githubLink: string
-}
+import { Project } from './projects'
 
 export default function ProjectCard({
     imgSrc,
@@ -16,7 +9,8 @@ export default function ProjectCard({
     techStack,
     githubLink,
     projectLink,
-}: props) {
+    isPrivate,
+}: Project) {
     const { control, ref, variant } = useScrollAnimation(1)
 
     return (
@@ -30,11 +24,12 @@ export default function ProjectCard({
             <div>
                 <div className='group relative'>
                     <img src={imgSrc} alt={name} />
-                    <div className='absolute top-0 left-0 h-full w-0 flex flex-col justify-center items-center bg-black bg-opacity-50 opacity-0 md:group-hover:w-full md:group-hover:opacity-100 duration-500'>
+                    <div className='absolute top-0 left-0 h-full w-0 flex flex-col justify-center items-center bg-black bg-opacity-50 opacity-0 md:group-hover:w-full md:group-hover:opacity-100 duration-500 pointer-events-none select-none md:group-hover:pointer-events-auto'>
                         <div className='text-xl text-white grid gap-y-7'>
                             <ProjectBtns
                                 githubLink={githubLink}
                                 projectLink={projectLink}
+                                isPrivate={isPrivate}
                             />
                         </div>
                     </div>
@@ -52,6 +47,7 @@ export default function ProjectCard({
                 <ProjectBtns
                     githubLink={githubLink}
                     projectLink={projectLink}
+                    isPrivate={isPrivate}
                 />
             </div>
         </motion.div>

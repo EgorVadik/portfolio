@@ -2,17 +2,19 @@ import { motion } from 'framer-motion'
 import ProjectCard from './projectCard'
 import useScrollAnimation from '../hooks/useScrollAnimation'
 
+export type Project = {
+    name: string
+    imgSrc: string
+    techStack: string[]
+    projectLink: string
+    githubLink?: string
+    isPrivate: boolean
+}
+
 export default function Projects() {
     const { control, ref, variant } = useScrollAnimation(-1)
 
-    const projects = [
-        {
-            name: 'Shopping List',
-            imgSrc: '/images/shopping-list.png',
-            techStack: ['Vite', 'React', 'TypeScript', 'Tailwind CSS'],
-            projectLink: 'https://shopping-list-egorvadik.vercel.app/',
-            githubLink: 'https://github.com/EgorVadik/shopping-list',
-        },
+    const projects: Project[] = [
         {
             name: 'Basedbin',
             imgSrc: '/images/Basedbin.png',
@@ -25,13 +27,39 @@ export default function Projects() {
             ],
             projectLink: 'https://based-bin.vercel.app/',
             githubLink: 'https://github.com/EgorVadik/basedbin2.0',
+            isPrivate: false,
         },
         {
-            name: 'Fylo Landing Page',
-            imgSrc: '/images/Fylo-landing-page.png',
-            techStack: ['HTML', 'Tailwind CSS'],
-            projectLink: 'https://egorvadik.github.io/fylo-landing-page/',
-            githubLink: 'https://github.com/EgorVadik/fylo-landing-page',
+            name: 'Latin',
+            imgSrc: '/images/Latin.png',
+            techStack: [
+                'Next.js',
+                'TypeScript',
+                'Tailwind CSS',
+                'Prisma',
+                'Mongo DB',
+                'NextAuth.js',
+                'Uploadthing',
+            ],
+            projectLink: 'https://latin-ten.vercel.app/',
+            githubLink: '',
+            isPrivate: true,
+        },
+        {
+            name: 'Google Search Clone',
+            imgSrc: '/images/Google-Search-Clone.png',
+            techStack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Google API'],
+            projectLink: 'https://google-search-clone-egorvadik.vercel.app/',
+            githubLink: 'https://github.com/EgorVadik/google-search-clone',
+            isPrivate: false,
+        },
+        {
+            name: 'Shopping List',
+            imgSrc: '/images/shopping-list.png',
+            techStack: ['Vite', 'React', 'TypeScript', 'Tailwind CSS'],
+            projectLink: 'https://shopping-list-egorvadik.vercel.app/',
+            githubLink: 'https://github.com/EgorVadik/shopping-list',
+            isPrivate: false,
         },
         {
             name: 'Trending Movies and TV Shows',
@@ -46,22 +74,24 @@ export default function Projects() {
             ],
             projectLink: 'https://entertainment-app-egorvadik.vercel.app/',
             githubLink: 'https://github.com/EgorVadik/entertainment-app',
+            isPrivate: false,
         },
         {
-            name: 'Easybank Landing Page',
-            imgSrc: '/images/Easybank-landing-page.png',
-            techStack: ['HTML', 'Tailwind CSS', 'JavaScript'],
-            projectLink:
-                'https://egorvadik.github.io/easybanking-landing-page/',
-            githubLink: 'https://github.com/EgorVadik/easybanking-landing-page',
+            name: 'Fylo Landing Page',
+            imgSrc: '/images/Fylo-landing-page.png',
+            techStack: ['HTML', 'Tailwind CSS'],
+            projectLink: 'https://egorvadik.github.io/fylo-landing-page/',
+            githubLink: 'https://github.com/EgorVadik/fylo-landing-page',
+            isPrivate: false,
         },
-        {
-            name: 'Google Search Clone',
-            imgSrc: '/images/Google-Search-Clone.png',
-            techStack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Google API'],
-            projectLink: 'https://google-search-clone-egorvadik.vercel.app/',
-            githubLink: 'https://github.com/EgorVadik/google-search-clone',
-        },
+        // {
+        //     name: 'Easybank Landing Page',
+        //     imgSrc: '/images/Easybank-landing-page.png',
+        //     techStack: ['HTML', 'Tailwind CSS', 'JavaScript'],
+        //     projectLink:
+        //         'https://egorvadik.github.io/easybanking-landing-page/',
+        //     githubLink: 'https://github.com/EgorVadik/easybanking-landing-page',
+        // },
         // {
         //     name: 'Bookmark Landing Page',
         //     imgSrc: '/images/Bookmark-page.png',
@@ -90,14 +120,7 @@ export default function Projects() {
             </motion.div>
             <div className='grid md:grid-cols-2 gap-6 mb-20'>
                 {projects.map((project, index) => (
-                    <ProjectCard
-                        key={index}
-                        imgSrc={project.imgSrc}
-                        name={project.name}
-                        techStack={project.techStack}
-                        githubLink={project.githubLink}
-                        projectLink={project.projectLink}
-                    />
+                    <ProjectCard key={index} {...project} />
                 ))}
             </div>
         </div>

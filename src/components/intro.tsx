@@ -28,15 +28,6 @@ export default function Intro() {
                     <h1>Nice to meet you!</h1>
                     <h1>
                         I'm{' '}
-                        {/* <TypeWriter
-                            options={{
-                                strings: [name],
-                                autoStart: true,
-                                loop: true,
-                                delay: 150,
-                                deleteSpeed: 150,
-                            }}
-                        /> */}
                         <span className='underline decoration-[#55f7af]'>
                             {name.split('').map((letter, index) => (
                                 <motion.span
