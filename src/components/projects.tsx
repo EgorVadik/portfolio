@@ -26,10 +26,31 @@ export default function Projects() {
                 'MongoDB',
                 'NextAuth.js',
                 'Uploadthing',
+                'PayPal',
+                'Shadcn/ui',
             ],
             projectLink: 'https://shutterstory.net/',
             githubLink: '',
             isPrivate: true,
+        },
+        {
+            name: 'Gemini Chat',
+            imgSrc: '/images/GeminiChat.png',
+            techStack: [
+                'Next.js',
+                'TypeScript',
+                'Tailwind CSS',
+                'Prisma',
+                'MongoDB',
+                'Clerk',
+                'Stripe',
+                'Shadcn/ui',
+                'Gemini API',
+                'Chat GPT API',
+            ],
+            projectLink: 'https://gemini-chat-egorvadik.vercel.app/',
+            githubLink: 'https://github.com/EgorVadik/gemini-chat',
+            isPrivate: false,
         },
         {
             name: 'Basedbin',
@@ -95,14 +116,14 @@ export default function Projects() {
             githubLink: 'https://github.com/EgorVadik/entertainment-app',
             isPrivate: false,
         },
-        // {
-        //     name: 'Fylo Landing Page',
-        //     imgSrc: '/images/Fylo-landing-page.png',
-        //     techStack: ['HTML', 'Tailwind CSS'],
-        //     projectLink: 'https://egorvadik.github.io/fylo-landing-page/',
-        //     githubLink: 'https://github.com/EgorVadik/fylo-landing-page',
-        //     isPrivate: false,
-        // },
+        {
+            name: 'Fylo Landing Page',
+            imgSrc: '/images/Fylo-landing-page.png',
+            techStack: ['HTML', 'Tailwind CSS'],
+            projectLink: 'https://egorvadik.github.io/fylo-landing-page/',
+            githubLink: 'https://github.com/EgorVadik/fylo-landing-page',
+            isPrivate: false,
+        },
         // {
         //     name: 'Easybank Landing Page',
         //     imgSrc: '/images/Easybank-landing-page.png',
@@ -123,7 +144,7 @@ export default function Projects() {
     return (
         <div className='mx-5 md:mx-0'>
             <motion.div
-                className='flex items-center text-white mt-20 mb-10'
+                className='flex items-center mt-20 mb-10 text-white'
                 ref={ref}
                 variants={variant}
                 initial='hidden'
@@ -137,7 +158,7 @@ export default function Projects() {
                     Contact Me
                 </a>
             </motion.div>
-            <div className='grid md:grid-cols-2 gap-6 mb-20'>
+            <div className='grid gap-6 mb-20 md:grid-cols-2'>
                 {projects.map((project, index) => (
                     <ProjectCard key={index} {...project} />
                 ))}
