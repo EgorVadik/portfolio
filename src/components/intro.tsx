@@ -18,7 +18,7 @@ export default function Intro() {
     return (
         <div className='md:text-6xl text-5xl font-bold text-white md:h-[500px] grid items-center md:grid-cols-3 relative px-5 md:px-0 overflow-hidden'>
             <motion.div
-                className='col-span-2 relative z-10 text-center md:text-left md:mb-0 mb-20'
+                className='relative z-10 col-span-2 mb-20 text-center md:text-left md:mb-0'
                 ref={refLeft}
                 variants={variant}
                 initial='hidden'
@@ -57,12 +57,14 @@ export default function Intro() {
                 </motion.div>
                 <motion.div variants={childVariant}>
                     <div className='text-sm font-medium md:w-3/4 text-[#b8b8b8] pb-5 pt-7'>
-                        I'm a 4th year computer science student, interested in
-                        back-end development, but also working in front-end,
-                        motivated to learn new technologies, with a fast
-                        learning ability. Native language Arabic, second
-                        language English.
-                        <span className='md:ml-0 ml-1 inline-flex md:flex items-center gap-1'>
+                        I graduated from the Arab Academy for Science,
+                        Technology and Maritime Transport (AAST) with a degree
+                        in Computer Science. My focus is on back-end
+                        development, and I also have experience in front-end
+                        technologies. I am highly motivated to learn new
+                        technologies and adapt quickly. Native language Arabic,
+                        second language English.
+                        <span className='inline-flex items-center gap-1 ml-1 md:ml-0 md:flex'>
                             Mainly work using
                             <TypeWriter
                                 options={{
@@ -90,9 +92,9 @@ export default function Intro() {
                     </a>
                 </motion.div>
             </motion.div>
-            <div className='md:row-start-auto row-start-1 col-span-2 m-auto'>
+            <div className='col-span-2 row-start-1 m-auto md:row-start-auto'>
                 <motion.div
-                    className='md:absolute md:-top-20 md:right-0 mb-10'
+                    className='mb-10 md:absolute md:-top-20 md:right-0'
                     ref={refRight}
                     variants={variantRight}
                     initial='hidden'
