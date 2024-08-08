@@ -1,168 +1,189 @@
-import { motion } from 'framer-motion'
-import ProjectCard from './projectCard'
-import useScrollAnimation from '../hooks/useScrollAnimation'
+'use client'
 
-export type Project = {
-    name: string
-    imgSrc: string
-    techStack: string[]
-    projectLink: string
-    githubLink?: string
-    isPrivate: boolean
-}
+import { projects } from '@/lib/constants'
+import { useGSAP } from '@gsap/react'
+import gsap from 'gsap'
+import Image from 'next/image'
+import SplitType from 'split-type'
+import {
+    HoverCard,
+    HoverCardContent,
+    HoverCardTrigger,
+} from '@/components/ui/hover-card'
+import Link from 'next/link'
+import {
+    Carousel,
+    CarouselContent,
+    CarouselItem,
+    CarouselNext,
+    CarouselPrevious,
+} from '@/components/ui/carousel'
+import Autoplay from 'embla-carousel-autoplay'
+import { HoverWrapper } from './hover-wrapper'
 
-export default function Projects() {
-    const { control, ref, variant } = useScrollAnimation(-1)
+export const Projects = () => {
+    useGSAP(() => {
+        const elements = gsap.utils.toArray(
+            '#projects-section>div',
+        ) as HTMLElement[]
 
-    const projects: Project[] = [
-        {
-            name: 'ShutterStory',
-            imgSrc: '/images/ShutterStory.png',
-            techStack: [
-                'Next.js',
-                'TypeScript',
-                'Tailwind CSS',
-                'Prisma',
-                'MongoDB',
-                'NextAuth.js',
-                'Uploadthing',
-                'PayPal',
-                'Shadcn/ui',
-            ],
-            projectLink: 'https://shutterstory.net/',
-            githubLink: '',
-            isPrivate: true,
-        },
-        {
-            name: 'Gemini Chat',
-            imgSrc: '/images/GeminiChat.png',
-            techStack: [
-                'Next.js',
-                'TypeScript',
-                'Tailwind CSS',
-                'Prisma',
-                'MongoDB',
-                'Clerk',
-                'Stripe',
-                'Shadcn/ui',
-                'Gemini API',
-                'Chat GPT API',
-            ],
-            projectLink: 'https://gemini-chat-egorvadik.vercel.app/',
-            githubLink: 'https://github.com/EgorVadik/gemini-chat',
-            isPrivate: false,
-        },
-        {
-            name: 'Basedbin',
-            imgSrc: '/images/Basedbin.png',
-            techStack: [
-                'Next.js',
-                'Nodejs',
-                'TypeScript',
-                'Tailwind CSS',
-                'MongoDB',
-                'NextAuth.js',
-                'Prisma',
-                'Yjs',
-            ],
-            projectLink: 'https://based-bin.vercel.app/',
-            githubLink: 'https://github.com/EgorVadik/basedbin2.0',
-            isPrivate: false,
-        },
-        {
-            name: 'Latin',
-            imgSrc: '/images/Latin.png',
-            techStack: [
-                'Next.js',
-                'TypeScript',
-                'Tailwind CSS',
-                'Prisma',
-                'MongoDB',
-                'NextAuth.js',
-                'Uploadthing',
-            ],
-            projectLink: 'https://latin-ten.vercel.app/',
-            githubLink: '',
-            isPrivate: true,
-        },
-        {
-            name: 'Google Search Clone',
-            imgSrc: '/images/Google-Search-Clone.png',
-            techStack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Google API'],
-            projectLink: 'https://google-search-clone-egorvadik.vercel.app/',
-            githubLink: 'https://github.com/EgorVadik/google-search-clone',
-            isPrivate: false,
-        },
-        {
-            name: 'Shopping List',
-            imgSrc: '/images/shopping-list.png',
-            techStack: ['Vite', 'React', 'TypeScript', 'Tailwind CSS'],
-            projectLink: 'https://shopping-list-egorvadik.vercel.app/',
-            githubLink: 'https://github.com/EgorVadik/shopping-list',
-            isPrivate: false,
-        },
-        {
-            name: 'Trending Movies and TV Shows',
-            imgSrc: '/images/Trending-Movies_Tv-Series.png',
-            techStack: [
-                'Next.js',
-                'TypeScript',
-                'Tailwind CSS',
-                'Prisma',
-                'MongoDB',
-                'TMDb API',
-            ],
-            projectLink: 'https://entertainment-app-egorvadik.vercel.app/',
-            githubLink: 'https://github.com/EgorVadik/entertainment-app',
-            isPrivate: false,
-        },
-        {
-            name: 'Fylo Landing Page',
-            imgSrc: '/images/Fylo-landing-page.png',
-            techStack: ['HTML', 'Tailwind CSS'],
-            projectLink: 'https://egorvadik.github.io/fylo-landing-page/',
-            githubLink: 'https://github.com/EgorVadik/fylo-landing-page',
-            isPrivate: false,
-        },
-        // {
-        //     name: 'Easybank Landing Page',
-        //     imgSrc: '/images/Easybank-landing-page.png',
-        //     techStack: ['HTML', 'Tailwind CSS', 'JavaScript'],
-        //     projectLink:
-        //         'https://egorvadik.github.io/easybanking-landing-page/',
-        //     githubLink: 'https://github.com/EgorVadik/easybanking-landing-page',
-        // },
-        // {
-        //     name: 'Bookmark Landing Page',
-        //     imgSrc: '/images/Bookmark-page.png',
-        //     techStack: ['HTML', 'Tailwind CSS', 'JavaScript'],
-        //     projectLink: 'https://egorvadik.github.io/bookmark-landing-page/',
-        //     githubLink: 'https://github.com/EgorVadik/bookmark-landing-page',
-        // },
-    ]
+        elements.forEach((element, index) => {
+            const tl = gsap.timeline({
+                defaults: {
+                    opacity: 0,
+                    duration: 1.5,
+                    ease: 'power4.inOut',
+                },
+                scrollTrigger: {
+                    trigger: element,
+                    start: 'top 90%',
+                    end: 'bottom 80%',
+                    toggleActions: 'play none none none',
+                },
+            })
+
+            gsap.from(element, {
+                scale: 0.6,
+                rotationX: '45deg',
+                clearProps: 'all',
+                scrollTrigger: {
+                    trigger: element,
+                    start: 'top 80%',
+                    end: 'bottom 70%',
+                    scrub: 1,
+                },
+            })
+
+            tl.from(
+                element.querySelector('img'),
+                {
+                    x: index % 2 === 0 ? 100 : -100,
+                },
+                0,
+            )
+
+            const split = new SplitType(element.querySelector('h2')!, {
+                types: 'chars',
+            })
+            const chars = split.chars
+            tl.from(
+                chars,
+                {
+                    stagger: 0.1,
+                    y: 10,
+                },
+                0,
+            )
+            tl.from(
+                element.querySelectorAll('.tech-stack>span'),
+                {
+                    stagger: 0.1,
+                    y: 10,
+                },
+                0,
+            )
+
+            const splitLinks = new SplitType(element.querySelectorAll('a')!, {
+                types: 'chars',
+            })
+            const linkChars = splitLinks.chars
+            tl.from(
+                linkChars,
+                {
+                    stagger: 0.1,
+                    y: 10,
+                },
+                0,
+            )
+        })
+    }, [])
 
     return (
-        <div className='mx-5 md:mx-0'>
-            <motion.div
-                className='flex items-center mt-20 mb-10 text-white'
-                ref={ref}
-                variants={variant}
-                initial='hidden'
-                animate={control}
-            >
-                <h1 className='text-5xl font-bold'>Projects</h1>
-                <a
-                    href='#footer'
-                    className='border-b-2 border-[#55f7af] py-1 uppercase font-medium text-xl tracking-wider md:text-base ml-auto hover:text-[#55f7af] duration-200 transition-colors'
+        <section id='projects-section' className='container'>
+            {projects.map((project, index) => (
+                <div
+                    key={index}
+                    className='flex flex-col items-center justify-between border-b lg:flex-row lg:gap-20 lg:even:flex-row-reverse'
                 >
-                    Contact Me
-                </a>
-            </motion.div>
-            <div className='grid gap-6 mb-20 md:grid-cols-2'>
-                {projects.map((project, index) => (
-                    <ProjectCard key={index} {...project} />
-                ))}
-            </div>
-        </div>
+                    <div>
+                        <h2 className='whitespace-nowrap text-2xl font-bold sm:text-4xl'>
+                            {project.name}
+                        </h2>
+                        <div className='tech-stack flex flex-wrap gap-2 pt-5'>
+                            {project.techStack.map((tech, index) => (
+                                <span
+                                    key={index}
+                                    className='rounded-md bg-secondary-foreground px-2 py-1 text-sm font-semibold text-secondary sm:text-base'
+                                >
+                                    {tech}
+                                </span>
+                            ))}
+                        </div>
+                        <a
+                            href={project.projectLink}
+                            target='_blank'
+                            rel='noreferrer'
+                            className='group relative block w-fit pt-4 text-lg *:duration-300 hover:*:scale-105 sm:text-2xl'
+                        >
+                            <span>Check it out!</span>
+                            <span className='absolute bottom-0 right-0 h-px w-0 bg-primary duration-300 group-hover:left-0 group-hover:w-full' />
+                        </a>
+                        <HoverCard openDelay={200}>
+                            <HoverCardTrigger asChild>
+                                <Link
+                                    href={`/project/${project.name.replace(/ /g, '-')}`}
+                                    className='group relative block w-fit text-lg *:duration-300 hover:*:scale-105 sm:text-2xl'
+                                >
+                                    <span>More Info</span>
+                                    <span className='absolute bottom-0 right-0 h-px w-0 bg-primary duration-300 group-hover:left-0 group-hover:w-full' />
+                                </Link>
+                            </HoverCardTrigger>
+                            <HoverCardContent
+                                side='bottom'
+                                align='start'
+                                className='border-0 p-0 ring-4 ring-primary'
+                            >
+                                <HoverWrapper text='sm'>
+                                    <Carousel
+                                        plugins={[
+                                            Autoplay({
+                                                delay: 2000,
+                                            }),
+                                        ]}
+                                        opts={{
+                                            loop: true,
+                                        }}
+                                    >
+                                        <CarouselContent>
+                                            {project.imgs.map((img, index) => (
+                                                <CarouselItem key={index}>
+                                                    <Image
+                                                        src={img.src}
+                                                        alt={img.alt}
+                                                        width={1080 / 4}
+                                                        height={800 / 4}
+                                                        className='rounded-lg'
+                                                    />
+                                                </CarouselItem>
+                                            ))}
+                                        </CarouselContent>
+                                        <CarouselPrevious />
+                                        <CarouselNext />
+                                    </Carousel>
+                                </HoverWrapper>
+                            </HoverCardContent>
+                        </HoverCard>
+                    </div>
+                    <Image
+                        src={project.imgs[0].src}
+                        alt={project.name}
+                        className='my-5 h-full w-full'
+                        width={1080}
+                        height={800}
+                        loading='eager'
+                    />
+                </div>
+            ))}
+        </section>
     )
 }

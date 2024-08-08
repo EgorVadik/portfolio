@@ -1,62 +1,155 @@
-import useScrollAnimation from '../hooks/useScrollAnimation'
-import { motion } from 'framer-motion'
-import useStaggerAnimation from '../hooks/useStaggerAnimation'
-import TypeWriter from 'typewriter-effect'
+'use client'
 
-export default function Intro() {
-    const name = 'Ali Tamer' as const
+import { useGSAP } from '@gsap/react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/all'
+import Image from 'next/image'
+import SplitType from 'split-type'
 
-    const { control: controlLeft, ref: refLeft } = useScrollAnimation(-1)
+let img1: gsap.core.Tween | undefined
+let img2: gsap.core.Tween | undefined
+let img3: gsap.core.Tween | undefined
 
-    const {
-        control: controlRight,
-        ref: refRight,
-        variant: variantRight,
-    } = useScrollAnimation(1)
-    const { childVariant, variant } = useStaggerAnimation(-1)
+export const Intro = () => {
+    useGSAP(() => {
+        img1 = gsap.to('#my-images-container>img:nth-child(1)', {
+            paused: true,
+            xPercent: -75,
+            yPercent: 16,
+            rotate: '-24deg',
+            ease: 'power4.inOut',
+            zIndex: 20,
+        })
+
+        img2 = gsap.to('#my-images-container>img:nth-child(2)', {
+            paused: true,
+            xPercent: -15,
+            yPercent: 8,
+            rotate: '-8deg',
+            ease: 'power4.inOut',
+            zIndex: 20,
+        })
+
+        img3 = gsap.to('#my-images-container>img:nth-child(3)', {
+            paused: true,
+            xPercent: 45,
+            yPercent: 8,
+            rotate: '8deg',
+            ease: 'power4.inOut',
+            zIndex: 20,
+        })
+
+        const heading = document.getElementById('heading')
+        const subText = document.getElementById('sub-text')
+        const images = document.querySelectorAll('#my-images-container>img')
+
+        const tl = gsap.timeline({
+            defaults: {
+                stagger: 0.5,
+            },
+        })
+
+        if (heading) {
+            const split = new SplitType(heading, { types: 'chars' })
+            const chars = split.chars
+
+            tl.fromTo(
+                chars,
+                {
+                    opacity: 0,
+                    y: 100,
+                },
+                {
+                    delay: 2,
+                    opacity: 1,
+                    y: 0,
+                    stagger: {
+                        amount: 0.2,
+                        ease: 'circ.inOut',
+                        each: 0.05,
+                        from: 'center',
+                    },
+                    onComplete: () => {
+                        ScrollTrigger.create({
+                            scrub: true,
+                            trigger: heading,
+                            start: 'top 10%',
+                            end: `+=${heading.offsetHeight * 3}`,
+                            animation: gsap.to(chars, {
+                                opacity: 0,
+                                y: -100,
+                                duration: 1,
+                                stagger: {
+                                    amount: 0.2,
+                                    ease: 'circ.inOut',
+                                    each: 0.05,
+                                    from: 'center',
+                                },
+                            }),
+                        })
+                    },
+                },
+            )
+        }
+
+        if (subText) {
+            const split = new SplitType(subText, { types: 'words' })
+            const words = split.words
+
+            tl.fromTo(
+                words,
+                {
+                    opacity: 0,
+                    y: 100,
+                },
+                {
+                    y: 0,
+                    opacity: 1,
+                    stagger: 0.02,
+                    ease: 'circ.inOut',
+                    onComplete: () => {
+                        ScrollTrigger.create({
+                            scrub: true,
+                            trigger: subText,
+                            start: 'top 5%',
+                            end: `+=${subText.offsetHeight}`,
+                            animation: gsap.to(words, {
+                                opacity: 0,
+                                y: -100,
+                                duration: 1,
+                                stagger: 0.02,
+                                ease: 'circ.inOut',
+                            }),
+                        })
+                    },
+                },
+            )
+        }
+
+        tl.fromTo(
+            images,
+            {
+                opacity: 0,
+                x: 100,
+            },
+            {
+                opacity: 1,
+                x: 0,
+                stagger: 0.05,
+                ease: 'circ.inOut',
+            },
+        )
+    }, [])
 
     return (
-        <div className='md:text-6xl text-5xl font-bold text-white md:h-[500px] grid items-center md:grid-cols-3 relative px-5 md:px-0 overflow-hidden'>
-            <motion.div
-                className='relative z-10 col-span-2 mb-20 text-center md:text-left md:mb-0'
-                ref={refLeft}
-                variants={variant}
-                initial='hidden'
-                animate={controlLeft}
-            >
-                <motion.div variants={childVariant}>
-                    <h1>Nice to meet you!</h1>
-                    <h1>
-                        I'm{' '}
-                        <span className='underline decoration-[#55f7af]'>
-                            {name.split('').map((letter, index) => (
-                                <motion.span
-                                    key={index}
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    transition={{
-                                        duration: 0.2,
-                                        delay: index * 0.15,
-                                    }}
-                                >
-                                    {letter}
-                                </motion.span>
-                            ))}
-                        </span>
-                        <motion.span
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{
-                                duration: 0.2,
-                                delay: name.length * 0.15,
-                            }}
-                        >
-                            .
-                        </motion.span>
-                    </h1>
-                </motion.div>
-                <motion.div variants={childVariant}>
-                    <div className='text-sm font-medium md:w-3/4 text-[#b8b8b8] pb-5 pt-7'>
+        <div className='container relative grid items-center px-5 text-5xl font-bold md:h-[500px] md:grid-cols-3 md:text-6xl'>
+            <div className='relative z-10 col-span-2 text-center md:text-left'>
+                <h1 id='heading'>
+                    Hi there,
+                    <br className='xs:hidden' /> {`I'm`} Ali.
+                </h1>
+                <div id='sub-text'>
+                    <div className='pb-5 pt-7 text-sm font-medium text-muted-foreground md:w-3/4'>
                         I graduated from the Arab Academy for Science,
                         Technology and Maritime Transport (AAST) with a degree
                         in Computer Science. My focus is on back-end
@@ -64,55 +157,78 @@ export default function Intro() {
                         technologies. I am highly motivated to learn new
                         technologies and adapt quickly. Native language Arabic,
                         second language English.
-                        <span className='inline-flex items-center gap-1 ml-1 md:ml-0 md:flex'>
-                            Mainly work using
-                            <TypeWriter
-                                options={{
-                                    strings: [
-                                        'Next.js',
-                                        'Node.js',
-                                        'Tailwind CSS',
-                                        'TypeScript',
-                                    ],
-                                    autoStart: true,
-                                    loop: true,
-                                    delay: 100,
-                                    deleteSpeed: 100,
-                                }}
-                            />
-                        </span>
                     </div>
-                </motion.div>
-                <motion.div variants={childVariant}>
-                    <a
-                        href='#footer'
-                        className='border-b-2 border-[#55f7af] py-1 uppercase font-medium text-xl tracking-wider md:text-base hover:text-[#55f7af] duration-200 transition-colors'
-                    >
-                        Contact Me
-                    </a>
-                </motion.div>
-            </motion.div>
+                </div>
+            </div>
             <div className='col-span-2 row-start-1 m-auto md:row-start-auto'>
-                <motion.div
-                    className='mb-10 md:absolute md:-top-20 md:right-0'
-                    ref={refRight}
-                    variants={variantRight}
-                    initial='hidden'
-                    animate={controlRight}
-                >
-                    <div className='relative'>
-                        <img
-                            src='/images/ali-tamer.jpg'
-                            alt='Ali Tamer'
-                            className='md:w-[330px] w-[250px] h-[420px] md:h-[550px] object-cover'
+                <div className='mb-10 rounded-lg md:absolute md:-top-20 md:right-0'>
+                    <div
+                        id='my-images-container'
+                        className='relative aspect-[5_/_7] h-[480px] w-80 rounded-lg sm:h-[550px] sm:w-96'
+                        onMouseEnter={() => {
+                            img1?.play()
+                            img2?.play()
+                            img3?.play()
+                        }}
+                        onMouseLeave={() => {
+                            img1?.reverse()
+                            img2?.reverse()
+                            img3?.reverse()
+                        }}
+                    >
+                        <Image
+                            src='/images/me/ali-tamer-3.jpg'
+                            alt='Ali Tamer Third'
+                            className='absolute aspect-[5_/_7] h-[480px] w-80 -translate-x-[10%] -rotate-3 rounded-lg bg-white/20 object-cover ease-fast-start sm:h-[550px] sm:w-96'
+                            width={960}
+                            height={1280}
+                            onMouseEnter={() => {
+                                img1?.play()
+                                img2?.play()
+                                img3?.play()
+                            }}
+                            onMouseLeave={() => {
+                                img1?.reverse()
+                                img2?.reverse()
+                                img3?.reverse()
+                            }}
                         />
-                        <img
-                            src='/circle.svg'
-                            alt='Circle'
-                            className='absolute bottom-16 md:-left-10 md:w-20 md:right-auto -right-40'
+                        <Image
+                            src='/images/me/ali-tamer-2.jpg'
+                            alt='Ali Tamer Second'
+                            className='absolute aspect-[5_/_7] rotate-2 rounded-md bg-white/20 object-cover ease-fast-start'
+                            width={960}
+                            height={1280}
+                            onMouseEnter={() => {
+                                img1?.play()
+                                img2?.play()
+                                img3?.play()
+                            }}
+                            onMouseLeave={() => {
+                                img1?.reverse()
+                                img2?.reverse()
+                                img3?.reverse()
+                            }}
+                        />
+                        <Image
+                            src='/images/me/ali-tamer.jpg'
+                            alt='Ali Tamer'
+                            className='absolute aspect-[5_/_7] -translate-x-[6%] rotate-3 rounded-md bg-white/20 object-cover ease-fast-start'
+                            width={960}
+                            height={1280}
+                            onMouseEnter={() => {
+                                img1?.play()
+                                img2?.play()
+                                img3?.play()
+                            }}
+                            onMouseLeave={() => {
+                                img1?.reverse()
+                                img2?.reverse()
+                                img3?.reverse()
+                            }}
                         />
                     </div>
-                </motion.div>
+                </div>
             </div>
         </div>
     )
