@@ -5,6 +5,7 @@ import { Overlay } from '@/components/overlay'
 import { NavBar } from '@/components/nav-bar'
 import { Footer } from '@/components/footer'
 import { NavMob } from '@/components/ui/nav-mob'
+import { Analytics } from '@vercel/analytics/react'
 
 import { GeistMono } from 'geist/font/mono'
 import { Toaster } from '@/components/ui/sonner'
@@ -76,6 +77,7 @@ export default function RootLayout({
                     {children}
                     <Footer />
                     <Toaster />
+                    <Analytics />
                 </ThemeProvider>
             </body>
         </html>
