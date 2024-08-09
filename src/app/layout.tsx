@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     openGraph: {
         type: 'website',
         locale: 'en_US',
-        url: 'https://portfolio-egorvadik.vercel.app',
+        url: 'https://alitamer.com',
         siteName: 'Ali Tamer - Portfolio',
         title: 'Ali Tamer - Portfolio',
         description:

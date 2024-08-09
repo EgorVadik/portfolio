@@ -24,7 +24,7 @@ export function generateMetadata({
         openGraph: {
             type: 'website',
             locale: 'en_US',
-            url: `https://portfolio-egorvadik.vercel.app/project/${name.replaceAll(' ', '-')}`,
+            url: `https://alitamer.com/project/${name.replaceAll(' ', '-')}`,
             siteName: 'Ali Tamer - Portfolio',
             title: `Project - ${project?.name ?? '404'}`,
             description: project?.description,
