@@ -58,6 +58,7 @@ export const Projects = () => {
                 element.querySelector('img'),
                 {
                     x: index % 2 === 0 ? 100 : -100,
+                    clearProps: 'all',
                 },
                 0,
             )
@@ -103,9 +104,9 @@ export const Projects = () => {
             {projects.map((project, index) => (
                 <div
                     key={index}
-                    className='flex flex-col items-center justify-between border-b lg:flex-row lg:gap-20 lg:even:flex-row-reverse'
+                    className='flex flex-col items-center border-b lg:flex-row lg:gap-20 lg:even:flex-row-reverse'
                 >
-                    <div>
+                    <div className='lg:max-w-md'>
                         <h2 className='whitespace-nowrap text-2xl font-bold sm:text-4xl'>
                             {project.name}
                         </h2>
@@ -174,14 +175,16 @@ export const Projects = () => {
                             </HoverCardContent>
                         </HoverCard>
                     </div>
-                    <Image
-                        src={project.imgs[0].src}
-                        alt={project.name}
-                        className='my-5 h-full w-full'
-                        width={1080}
-                        height={800}
-                        loading='eager'
-                    />
+                    <div>
+                        <Image
+                            src={project.imgs[0].src}
+                            alt={project.name}
+                            className='my-5 h-full w-full'
+                            width={1080}
+                            height={800}
+                            loading='eager'
+                        />
+                    </div>
                 </div>
             ))}
         </section>
