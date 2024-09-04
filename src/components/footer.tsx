@@ -113,13 +113,6 @@ export const Footer = () => {
     }, [])
 
     const onSubmit = async (data: Contact) => {
-        const sleep = (ms: number) =>
-            new Promise((resolve) => setTimeout(resolve, ms))
-
-        await sleep(3000)
-
-        return toast.error('Message not sent')
-
         const res = await sendMail(data)
         if (!res.success && res.error) {
             return toast.error(res.error)
