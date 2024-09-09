@@ -136,7 +136,7 @@ export const ProjectDetails = ({ project }: ProjectDetailsProps) => {
                             alt={img.alt}
                             width={1080}
                             height={800}
-                            className='image max-h-[70vh]'
+                            className='image max-h-[70vh] rounded-md ring ring-muted'
                             draggable='false'
                         />
                     </HoverWrapper>
