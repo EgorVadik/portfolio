@@ -71,7 +71,7 @@ export default function RootLayout({
                     disableTransitionOnChange
                 >
                     <div className='pointer-events-none fixed inset-0 flex items-center justify-center bg-grid-gray-600/[0.3] [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]' />
-                    <Overlay />
+                    {/* <Overlay /> */}
                     <NavBar />
                     <NavMob />
                     {children}

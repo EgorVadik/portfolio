@@ -60,7 +60,7 @@ export const Intro = () => {
                     y: 100,
                 },
                 {
-                    delay: 2,
+                    // delay: 2,
                     opacity: 1,
                     y: 0,
                     stagger: {
@@ -150,13 +150,13 @@ export const Intro = () => {
                 </h1>
                 <div id='sub-text'>
                     <div className='pb-5 pt-7 text-sm font-medium text-muted-foreground md:w-3/4'>
-                        I graduated from the Arab Academy for Science,
-                        Technology and Maritime Transport (AAST) with a degree
-                        in Computer Science. My focus is on back-end
-                        development, and I also have experience in front-end
-                        technologies. I am highly motivated to learn new
-                        technologies and adapt quickly. Native language Arabic,
-                        second language English.
+                        Full-Stack Developer with experience as a freelancer,
+                        developing web applications and APIs using Node.js,
+                        Express, React, and MongoDB. Passionate about staying
+                        up-to-date with the latest web technologies and best
+                        practices. Based in Sharjah, UAE and seeking
+                        opportunities to contribute to innovative software
+                        projects.
                     </div>
                 </div>
             </div>
